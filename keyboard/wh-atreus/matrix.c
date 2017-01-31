@@ -161,17 +161,17 @@ static matrix_row_t read_cols(void)
            (PINB&(1<<1) ? 0 : (1<<9)) |
            (PINB&(1<<0) ? 0 : (1<<10)) ;
 #else
-    return (PIND&(1<<4) ? 0 : (1<<0)) | 
-           (PINC&(1<<6) ? 0 : (1<<1)) |
-           (PIND&(1<<7) ? 0 : (1<<2)) |
-           (PINE&(1<<6) ? 0 : (1<<3)) |
-           (PINB&(1<<4) ? 0 : (1<<4)) |
+    return (PIND&(1<<4) ? 0 : (1<<10)) |
+           (PINC&(1<<6) ? 0 : (1<<9)) |
+           (PIND&(1<<7) ? 0 : (1<<8)) |
+           (PINE&(1<<6) ? 0 : (1<<7)) |
+           (PINB&(1<<4) ? 0 : (1<<6)) |
            (PIND&(1<<0) ? 0 : (1<<5)) |
-           (PINB&(1<<5) ? 0 : (1<<6)) |
-           (PINB&(1<<1) ? 0 : (1<<7)) |
-           (PINB&(1<<3) ? 0 : (1<<8)) |
-           (PINB&(1<<2) ? 0 : (1<<9)) |
-           (PINB&(1<<6) ? 0 : (1<<10)) ;
+           (PINB&(1<<5) ? 0 : (1<<4)) |
+           (PINB&(1<<1) ? 0 : (1<<3)) |
+           (PINB&(1<<3) ? 0 : (1<<2)) |
+           (PINB&(1<<2) ? 0 : (1<<1)) |
+           (PINB&(1<<6) ? 0 : (1<<0)) ;
 #endif
 }
 
@@ -189,7 +189,7 @@ static void unselect_rows(void)
 #ifdef TEENSY
 int rows[ROW_COUNT] = {0, 1, 2, 3};
 #else
-int rows[ROW_COUNT] = {7, 6, 5, 4};
+int rows[ROW_COUNT] = {4, 5, 6, 7};
 #endif
 
 static void select_row(uint8_t row)
