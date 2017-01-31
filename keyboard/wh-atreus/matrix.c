@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #ifndef DEBOUNCE
-#   define DEBOUNCE	5
+#   define DEBOUNCE	10
 #endif
 static uint8_t debouncing = DEBOUNCE;
 
@@ -161,17 +161,17 @@ static matrix_row_t read_cols(void)
            (PINB&(1<<1) ? 0 : (1<<9)) |
            (PINB&(1<<0) ? 0 : (1<<10)) ;
 #else
-    return (PINB&(1<<4) ? 0 : (1<<10)) |
-           (PINB&(1<<5) ? 0 : (1<<9)) |
-           (PINB&(1<<6) ? 0 : (1<<8)) |
-           (PINB&(1<<2) ? 0 : (1<<7)) |
-           (PINB&(1<<3) ? 0 : (1<<6)) |
-           (PINB&(1<<1) ? 0 : (1<<5)) |
-           (PIND&(1<<0) ? 0 : (1<<4)) |
-           (PIND&(1<<4) ? 0 : (1<<3)) |
-           (PIND&(1<<7) ? 0 : (1<<2)) |
+    return (PIND&(1<<4) ? 0 : (1<<0)) | 
            (PINC&(1<<6) ? 0 : (1<<1)) |
-           (PINE&(1<<6) ? 0 : (1<<0)) ;
+           (PIND&(1<<7) ? 0 : (1<<2)) |
+           (PINE&(1<<6) ? 0 : (1<<3)) |
+           (PINB&(1<<4) ? 0 : (1<<4)) |
+           (PIND&(1<<0) ? 0 : (1<<5)) |
+           (PINB&(1<<5) ? 0 : (1<<6)) |
+           (PINB&(1<<1) ? 0 : (1<<7)) |
+           (PINB&(1<<3) ? 0 : (1<<8)) |
+           (PINB&(1<<2) ? 0 : (1<<9)) |
+           (PINB&(1<<6) ? 0 : (1<<10)) ;
 #endif
 }
 
@@ -189,7 +189,7 @@ static void unselect_rows(void)
 #ifdef TEENSY
 int rows[ROW_COUNT] = {0, 1, 2, 3};
 #else
-int rows[ROW_COUNT] = {4, 5, 6, 7};
+int rows[ROW_COUNT] = {7, 6, 5, 4};
 #endif
 
 static void select_row(uint8_t row)
